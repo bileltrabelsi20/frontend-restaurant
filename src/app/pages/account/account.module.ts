@@ -11,7 +11,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { MatBadgeModule, MatDialogModule } from '@angular/material';
 import { ProductsComponent } from './products/products.component';
-import { NgxDropzoneModule } from 'ngx-dropzone';
+// import { NgxDropzoneModule } from 'ngx-dropzone';
 
 export const routes = [
   { 
@@ -38,7 +38,7 @@ export const routes = [
     SharedModule,
     MatBadgeModule,
     MatDialogModule,
-    NgxDropzoneModule
+    // NgxDropzoneModule
    
   ],
   declarations: [
