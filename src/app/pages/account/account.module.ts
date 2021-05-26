@@ -9,7 +9,8 @@ import { InformationComponent } from './information/information.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AddProductComponent } from './add-product/add-product.component';
-import { MatBadgeModule, MatDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatBadgeModule } from '@angular/material/badge';
 import { ProductsComponent } from './products/products.component';
 // import { NgxDropzoneModule } from 'ngx-dropzone';
 
