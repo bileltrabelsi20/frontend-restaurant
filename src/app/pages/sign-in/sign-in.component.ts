@@ -37,9 +37,9 @@ export class SignInComponent implements OnInit {
   public onLoginFormSubmit():void {
     if (this.loginForm.valid) {
       
-      this.authService.login(this.loginForm.value).subscribe((res)=>{
+      this.authService.login(this.loginForm.value).subscribe((res:any)=>{
          
-        localStorage.setItem('token',JSON.stringify(res));
+        localStorage.setItem('token',res.token);
          
         if(JSON.parse(JSON.stringify(res)).message=='email or password is invalid!'){
 
