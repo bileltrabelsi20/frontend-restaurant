@@ -36,33 +36,18 @@ export class SignInComponent implements OnInit {
 
   public onLoginFormSubmit():void {
     if (this.loginForm.valid) {
-      
       this.authService.login(this.loginForm.value).subscribe((res:any)=>{
-         
-        localStorage.setItem('token',res.token);
-         
-        if(JSON.parse(JSON.stringify(res)).message=='email or password is invalid!'){
+        this.snackBar.open('Login successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })
+          localStorage.setItem('token',res.token);
+          this.router.navigateByUrl('account/addProduct') // CAS ADMIN 
+          // this.router.navigateByUrl('/') // CAS CLIENT 
 
-          this.snackBar.open('verify your password or email', '×', { panelClass: 'warn', verticalPosition: 'top', duration: 3000 });
-
-         
-         }
-         else if (JSON.parse(JSON.stringify(res)).connectedUser.role=='admin'){      
-           
-          this.snackBar.open('admin login successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })
-
-          
-          this.router.navigateByUrl('account/addProduct')
-         
-         }
-         else {
-          this.snackBar.open('client login successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })
-
-          this.router.navigateByUrl('/')
-
-         }
-
+       },(err:any)=>{
+        this.snackBar.open(err.error.message, '×', { panelClass: 'warn', verticalPosition: 'top', duration: 3000 });
        })
+     }
+     else {
+    this.snackBar.open('Please verify your information!', '×', { panelClass: 'warning', verticalPosition: 'top', duration: 3000 })      
      }
   }
 
@@ -72,26 +57,15 @@ export class SignInComponent implements OnInit {
 
 
 public onRegisterFormSubmit():void {
-
   if (this.registerForm.valid && this.registerForm.controls.password.value==this.registerForm.controls.confirmPassword.value) {
-
     this.authService.register(this.registerForm.value).subscribe((res)=>{
-
-      if( res == 'email  exist!'){
-
-        this.snackBar.open("email exist !", '×', { panelClass: 'warn', verticalPosition: 'top', duration: 3000 });
-
-      }
-      else{
-
-        this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })
-
-      }
-    })
-    
+      this.snackBar.open('You are registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })      
+    }, (err:any) => {
+        this.snackBar.open(err.error.message, '×', { panelClass: 'warn', verticalPosition: 'top', duration: 3000 });
+      })
   }
-
+  else {
+    this.snackBar.open('Please verify your information!', '×', { panelClass: 'warning', verticalPosition: 'top', duration: 3000 })      
+  }
 }
-
-
 }
