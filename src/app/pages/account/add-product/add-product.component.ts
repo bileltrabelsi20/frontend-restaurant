@@ -20,17 +20,17 @@ export class AddProductComponent implements OnInit {
 
   constructor(public snackBar: MatSnackBar, public router: Router, private productService: ProductsService) { }
 
-  // files: File[] = [];
+  files: File[] = [];
 
-  // onSelect(event) {
-  //   console.log(event);
-  //   this.files.push(...event.addedFiles);
-  // }
+  onSelect(event) {
+    console.log(event);
+    this.files.push(...event.addedFiles);
+  }
 
-  // onRemove(event) {
-  //   console.log(event);
-  //   this.files.splice(this.files.indexOf(event), 1);
-  // }
+  onRemove(event) {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
+  }
 
   ngOnInit() {
 
