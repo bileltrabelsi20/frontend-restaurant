@@ -16,23 +16,20 @@ export class AddProductComponent implements OnInit {
   sandwichForm: FormGroup;
   tacosForm: FormGroup;
   ingrediantsForm: FormGroup;
-  file: any;
+  files: File[] = [];
 
   constructor(public snackBar: MatSnackBar, public router: Router, private productService: ProductsService) { }
 
-  files: File[] = [];
 
   onSelect(event) {
-    console.log(event);
-    this.files.push(...event.addedFiles);
+    this.files.push(...event.addedFiles);    
   }
 
   onRemove(event) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  ngOnInit() {
+  ngOnInit() {  
 
     this.burgerForm = new FormGroup({
       nom: new FormControl('', Validators.required),
@@ -55,7 +52,6 @@ export class AddProductComponent implements OnInit {
     this.ingrediantsForm = new FormGroup({
       nomIngrediant: new FormControl('', Validators.required),
       prixIngrediant: new FormControl('', Validators.required),
-      imageIngrediant: new FormControl('')
     })
   }
 
@@ -64,31 +60,23 @@ export class AddProductComponent implements OnInit {
   // form data heya el form eli bech nhotou fiha les input mte3na
 
   addTacos() {
-    if (this.tacosForm.valid) {
-     
+    
+    if (this.tacosForm.valid) {     
       const formdata = new FormData();
-
       Object.keys(this.tacosForm.value).forEach(key => {
         formdata.append(key , this.tacosForm.value[key])
       });
-      // formdata.append('nom', this.tacosForm.value.nom);
-      // formdata.append('prixPrincipale', this.tacosForm.value.prixPrincipale);
-      // formdata.append('compositions', this.tacosForm.value.compositions);
-      formdata.append('imageTacos', this.file);
+      formdata.append('imageTacos', this.files[0]);
 
       this.productService.addTacos(formdata).subscribe((res) => {
+          // remove files
+          this.files = [];
         this.snackBar.open('tacos ajouter!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })
         this.tacosForm.reset()
       })
     }
     else {
       this.snackBar.open('remplir le formulaire', '×', { panelClass: 'close', verticalPosition: 'top', duration: 3000 })
-    }
-  }
-
-  onFileSelectTacos(event) {
-    if (event.target.files.length > 0) {
-      this.file = event.target.files[0];
     }
   }
 
@@ -102,25 +90,17 @@ export class AddProductComponent implements OnInit {
       Object.keys(this.burgerForm.value).forEach(key => {
         formdata.append(key , this.burgerForm.value[key])
       });
-
-      // formdata.append('nom' , this.burgerForm.value.nom);
-      // formdata.append('prixPrincipale', this.burgerForm.value.prixPrincipale);
-      // formdata.append('compositions', this.burgerForm.value.compositions);
-      formdata.append('imageBurger', this.file);
+      formdata.append('imageBurger', this.files[0]);
 
       this.productService.addBurger(formdata).subscribe((res) => {
+          // remove files
+          this.files = [];
       this.snackBar.open('burger ajouter!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })
       this.burgerForm.reset()
       })
     }
     else {
       this.snackBar.open('remplir le formulaire', '×', { panelClass: 'close', verticalPosition: 'top', duration: 3000 })
-    }
-  }
-
-  onFileSelectBurger(event) {
-    if (event.target.files.length > 0) {
-      this.file = event.target.files[0];
     }
   }
 
@@ -134,25 +114,17 @@ export class AddProductComponent implements OnInit {
       Object.keys(this.sandwichForm.value).forEach(key => {
         formdata.append(key , this.sandwichForm.value[key])
       });
-      
-      // formdata.append('nom' , this.sandwichForm.value.nom);
-      // formdata.append('prixPrincipale', this.sandwichForm.value.prixPrincipale);
-      // formdata.append('compositions', this.sandwichForm.value.compositions);
-      formdata.append('imageSandwich', this.file);
+      formdata.append('imageSandwich', this.files[0]);
 
       this.productService.addSandwich(formdata).subscribe((res) => {
+        // remove files
+        this.files = [];
       this.snackBar.open('sandwich ajouter!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })
       this.sandwichForm.reset()
       })
     }
     else {
       this.snackBar.open('remplir le formulaire', '×', { panelClass: 'close', verticalPosition: 'top', duration: 3000 })
-    }
-  }
-
-  onFileSelectSandwich(event) {
-    if (event.target.files.length > 0) {
-      this.file = event.target.files[0];
     }
   }
 
@@ -166,21 +138,21 @@ export class AddProductComponent implements OnInit {
       Object.keys(this.ingrediantsForm.value).forEach(key => {
         formdata.append(key , this.ingrediantsForm.value[key])
       });
-      formdata.append('imageIngrediant', this.file);
+      formdata.append('imageIngrediant', this.files[0]);
 
       this.productService.addIngrediant(formdata).subscribe((res) => {
+          // remove files
+          this.files = [];
       this.snackBar.open('ingrediant ajouter!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })
-      this.ingrediantsForm.reset()
       })
     }
     else {
       this.snackBar.open('remplir le formulaire', '×', { panelClass: 'close', verticalPosition: 'top', duration: 3000 })
     }
+    this.ingrediantsForm.reset()
+  
+
+
   }
 
-  onFileSelectIngrediant(event) {
-    if (event.target.files.length > 0) {
-      this.file = event.target.files[0];
-    }
-  }
 }
