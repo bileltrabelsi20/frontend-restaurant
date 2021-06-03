@@ -51,7 +51,7 @@
                 </mat-expansion-panel-header>
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="filter-buttons">
                     <button mat-raised-button *ngFor="let size of sizes" (click)="size.selected = !size.selected" [class.selected]="size.selected">
-                        {{size.name}}                      
+                        {{size.name}}
                     </button>
                 </div>
             </mat-expansion-panel>
@@ -178,14 +178,14 @@
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="60" class="p-2">
                             <h4 class="category text-muted">{{ ( appService.Data.categories | filterById : product.categoryId )?.name }}</h4>                                                                     
-                            <a [routerLink]="['/products', product.id, product.name]" class="title">
-                                {{product.name}}
+                            <a [routerLink]="['/products', product.name]" class="title">
+                                {{product.nom}}
                             </a>
                             <p class="py-1 text-muted lh">{{product.description}}</p>
                             <div fxLayout="row" fxLayoutAlign="space-between center" class="prices">
                                 <div fxLayout="column" fxLayoutAlign="center start">
-                                    <p class="old-price text-muted"><span *ngIf="product.oldPrice">${{product.oldPrice | number : '1.2-2'}}</span></p>
-                                    <p class="new-price">${{product.newPrice | number : '1.2-2'}}</p>
+                                    <p class="old-price text-muted"><span *ngIf="product.oldPrice">${{product.prixPrincipale | number : '1.2-2'}}</span></p>
+                                    <p class="new-price">${{product.prixPrincipale | number : '1.2-2'}}</p>
                                 </div>
                                 <app-rating [ratingsCount]="product.ratingsCount" [ratingsValue]="product.ratingsValue" [direction]="'column'"></app-rating>
                             </div>                            
