@@ -20,8 +20,9 @@ export class ProductsComponent implements OnInit {
   public viewCol: number = 25;
   public counts = [12, 24, 36];
   public count:any;
-  public sortings = ['Sort by Default', 'Best match', 'Lowest first', 'Highest first'];
+  // public sortings = ['Sort by Default', 'Best match', 'Lowest first', 'Highest first'];
   public sort:any;
+  // public products = [] as any;
   public allSandwich = [] as any;
   public allBurger = [] as any;
   public allTacos = [] as any;
@@ -42,7 +43,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.count = this.counts[0];
-    this.sort = this.sortings[0];
+    // this.sort = this.sortings[0];
     this.sub = this.activatedRoute.params.subscribe(params => {
     });
     if(window.innerWidth < 960){
@@ -52,8 +53,8 @@ export class ProductsComponent implements OnInit {
       this.viewCol = 33.3;
     };
 
-    this.getCategories();
-    this.getBrands();
+    // this.getCategories();
+    // this.getBrands();
     // this.getAllProducts();   
   }
 

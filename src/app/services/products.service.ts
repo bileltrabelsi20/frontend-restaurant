@@ -45,7 +45,23 @@ export class ProductsService {
     return this.http.get( this.baseURL + '/menu/findAllTacos')
   }
 
-  getAllImage(){
-    return this.http.get( this.baseURL + '/upload/uploadSingle')
+  getAllIngrediants(){
+    return this.http.get( this.baseURL + '/menu/findAllIngrediants')
   }
+
+  ////////////////// delete products ///////////////////////////
+
+  deleteSandwich(id){
+    return this.http.delete ( this.baseURL + '/menu/deleteSandwich/' + id)
+  }
+  deleteBurger(id){
+    return this.http.delete ( this.baseURL + '/menu/deleteBurger/' + id)
+  }
+  deleteTacos(id){
+    return this.http.delete ( this.baseURL + '/menu/deleteTacos/' + id)
+  }
+  deleteIngrediant(id){
+    return this.http.delete ( this.baseURL + '/menu/deleteIngrediant/' + id)
+  }
+  
 }
