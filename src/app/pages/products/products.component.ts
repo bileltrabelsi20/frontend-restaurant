@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
   private sub: any;
   public viewType: string = 'grid';
   public viewCol: number = 25;
-  public counts = [12, 24, 36];
+  public counts = [3, 24, 36];
   public count:any;
   // public sortings = ['Sort by Default', 'Best match', 'Lowest first', 'Highest first'];
   public sort:any;
@@ -32,6 +32,7 @@ export class ProductsComponent implements OnInit {
   public priceTo: number = 1599;
   public page:any;
   public settings: Settings;
+  snackBar: any;
   constructor(public appSettings:AppSettings, 
               private activatedRoute: ActivatedRoute, 
               public appService:AppService, 
@@ -53,9 +54,10 @@ export class ProductsComponent implements OnInit {
       this.viewCol = 33.3;
     };
 
-    // this.getCategories();
-    // this.getBrands();
-    // this.getAllProducts();   
+      
+    this.getAllSandwich() ;
+    this.getAllTacos();
+    this.getAllBurger();
   }
 
   getAllSandwich(){
@@ -73,27 +75,6 @@ export class ProductsComponent implements OnInit {
       this.allTacos = data ;
     })
   }
-
-
-
-
-
-
-
-
-
-
-
-
-  // public getAllProducts(){
-  //   this.appService.getProducts("featured").subscribe(data=>{
-  //     this.products = data; 
-  //     //for show more product  
-  //     for (var index = 0; index < 3; index++) {
-  //       this.products = this.products.concat(this.products);        
-  //     }
-  //   });
-  // }
 
   public getCategories(){  
     if(this.appService.Data.categories.length == 0) { 
@@ -126,6 +107,7 @@ export class ProductsComponent implements OnInit {
     this.count = count;
     // this.getAllProducts(); 
   }
+ 
 
   public changeSorting(sort){
     this.sort = sort;
@@ -152,6 +134,9 @@ export class ProductsComponent implements OnInit {
   public onPageChanged(event){
       this.page = event;
       // this.getAllProducts(); 
+      this.getAllSandwich() ;
+    this.getAllTacos();
+    this.getAllTacos();
       window.scrollTo(0,0); 
   }
 
