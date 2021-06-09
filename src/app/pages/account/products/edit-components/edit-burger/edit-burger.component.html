@@ -1,0 +1,28 @@
+<mat-tab label="Add burger"> <br>
+    <form [formGroup]="burgerForm">
+      <mat-form-field appearance="fill">
+        <mat-label>nom du Burger</mat-label>
+        <input matInput formControlName="nom">
+      </mat-form-field><br>
+      <mat-form-field appearance="fill">
+
+        <mat-label>prix</mat-label>
+        <input matInput formControlName="prixPrincipale">
+      </mat-form-field><br>
+
+      <mat-form-field appearance="fill">
+        <mat-label>compositions</mat-label>
+        <textarea matInput formControlName="compositions"></textarea> 
+      </mat-form-field><br>
+
+      <!-- <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Drop an image here</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone> <br> -->
+
+      <!-- <button mat-raised-button color="primary" (click)="updateBurger()">update burger</button> -->
+
+    </form>
+  </mat-tab>

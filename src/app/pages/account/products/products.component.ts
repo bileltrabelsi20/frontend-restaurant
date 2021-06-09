@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AppService } from 'src/app/app.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductsService } from 'src/app/services/products.service';
-import { environment } from 'src/environments/environment';
+import { EditBurgerComponent } from './edit-components/edit-burger/edit-burger.component';
+import { EditIngrediantComponent } from './edit-components/edit-ingrediant/edit-ingrediant.component';
+import { EditSandwichComponent } from './edit-components/edit-sandwich/edit-sandwich.component';
+import { EditTacosComponent } from './edit-components/edit-tacos/edit-tacos.component';
 
 
 @Component({
@@ -16,62 +18,83 @@ export class ProductsComponent implements OnInit {
   public allBurger = [] as any;
   public allTacos = [] as any;
   public allIngrediants = [] as any;
-///////////////////////////////////////////////
-  public deleteSan = [] as any;
-  public deleteBur = [] as any;
-  public deleteTac = [] as any;
-  public deleteIng = [] as any;
 
+  ///////////////////////////////////////////////
 
-
-  constructor(public product : ProductsService) { }
+  constructor(public product: ProductsService, public dialog: MatDialog) { }
 
   ngOnInit() {
-
-    /////////////////////// add product /////////////////////
-  
-      this.product.getAllSandwich().subscribe(data => {
-        this.allSandwich = data ;
-      })
-    
-      this.product.getAllBurger().subscribe(data => {
-        this.allBurger = data ;
-      })
-    
-      this.product.getAllTacos().subscribe(data => {
-        this.allTacos = data ;
-      })
-      this.product.getAllIngrediants().subscribe(data => {
-        this.allIngrediants = data ;
-      })
-    
+    this.loadSandwitch();
+    this.loadBurger();
+    this.loadTacos();
+    this.loadIngrediants();
   }
-
+  /////////////////////// list product /////////////////////
+  loadSandwitch() {
+    this.product.getAllSandwich().subscribe(data => {
+      this.allSandwich = data;
+    })
+  }
+  loadBurger(){
+    this.product.getAllBurger().subscribe(data => {
+      this.allBurger = data;
+    })
+  }
+  loadTacos(){
+    this.product.getAllTacos().subscribe(data => {
+      this.allTacos = data;
+    })
+  }
+  loadIngrediants(){
+    this.product.getAllIngrediants().subscribe(data => {
+      this.allIngrediants = data;
+    })
+  }
   //////////////////// delete product  //////////////////////
 
-  deleteSandwich(id){
+  deleteSandwich(id) {
     this.product.deleteSandwich(id).subscribe(data => {
-      this.deleteSan = data ; 
-      this.ngOnInit();
-  })
- }
+      this.loadSandwitch();
+    })
+  }
 
- deleteBurger(id){
-  this.product.deleteBurger(id).subscribe(data => {
-    this.deleteBur = data ; 
-    this.ngOnInit();
-})
-}
-deleteTacos(id){
-  this.product.deleteTacos(id).subscribe(data => {
-    this.deleteBur = data ; 
-    this.ngOnInit();
-})
-}
-deleteIngrediant(id){
-  this.product.deleteIngrediant(id).subscribe(data => {
-    this.deleteBur = data ; 
-    this.ngOnInit();
-})
-}
+  deleteBurger(id) {
+    this.product.deleteBurger(id).subscribe(data => {
+      this.loadBurger();
+    })
+  }
+  deleteTacos(id) {
+    this.product.deleteTacos(id).subscribe(data => {
+      this.loadTacos();
+    })
+  }
+  deleteIngrediant(id) {
+    this.product.deleteIngrediant(id).subscribe(data => {
+      this.loadIngrediants();
+    })
+  }
+  openSandwichEditDialog(product) {
+    const dialogRef = this.dialog.open(EditSandwichComponent, {
+      width: '250px',
+      data : product
+    });
+  }
+  openBurgerEditDialog(product) {
+    const dialogRef = this.dialog.open(EditBurgerComponent, {
+      width: '100%',
+      data : product
+    });
+  } openTacosEditDialog(product) {
+    const dialogRef = this.dialog.open(EditTacosComponent, {
+      width: '250px',
+      data : product
+    });
+  }
+  openIngrediantEditDialog(product) {
+    const dialogRef = this.dialog.open(EditIngrediantComponent, {
+      width: '250px',
+      data : product
+    });
+  }
+
 }

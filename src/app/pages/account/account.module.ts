@@ -13,6 +13,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ProductsComponent } from './products/products.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { EditSandwichComponent } from './products/edit-components/edit-sandwich/edit-sandwich.component';
+import { EditTacosComponent } from './products/edit-components/edit-tacos/edit-tacos.component';
+import { EditBurgerComponent } from './products/edit-components/edit-burger/edit-burger.component';
+import { EditIngrediantComponent } from './products/edit-components/edit-ingrediant/edit-ingrediant.component';
 
 export const routes = [
   { 
@@ -49,7 +53,11 @@ export const routes = [
     AddressesComponent,
     OrdersComponent,
     AddProductComponent,
-    ProductsComponent
+    ProductsComponent,
+    EditSandwichComponent,
+    EditTacosComponent,
+    EditBurgerComponent,
+    EditIngrediantComponent
   ]
 })
 export class AccountModule { }
