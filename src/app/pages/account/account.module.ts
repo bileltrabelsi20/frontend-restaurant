@@ -59,6 +59,7 @@ export const routes = [
     EditBurgerComponent,
     EditIngrediantComponent
   ],
+  // nzidou dossier exports et entryComponenets fihom les componenets edit
   exports: [  
     EditSandwichComponent,
     EditTacosComponent,
