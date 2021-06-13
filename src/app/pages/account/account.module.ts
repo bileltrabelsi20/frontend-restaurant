@@ -58,6 +58,18 @@ export const routes = [
     EditTacosComponent,
     EditBurgerComponent,
     EditIngrediantComponent
-  ]
+  ],
+  exports: [  
+    EditSandwichComponent,
+    EditTacosComponent,
+    EditBurgerComponent,
+    EditIngrediantComponent 
+  ],
+  entryComponents: [
+    EditSandwichComponent,
+    EditTacosComponent,
+    EditBurgerComponent,
+    EditIngrediantComponent 
+  ],
 })
 export class AccountModule { }
