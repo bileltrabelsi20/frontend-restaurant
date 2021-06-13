@@ -63,5 +63,20 @@ export class ProductsService {
   deleteIngrediant(id){
     return this.http.delete ( this.baseURL + '/menu/deleteIngrediant/' + id)
   }
+
+///////////////////// edit products ///////////////////////////////  
+
+editSandwich(id:any,data:any){
+  return this.http.put ( this.baseURL + '/menu/editSandwich/' + id,data)
+}
+editBurger(id:any,data:any){
+  return this.http.put ( this.baseURL + '/menu/editBurger/' + id,data)
+}
+editTacos(id:any,data:any){
+  return this.http.put ( this.baseURL + '/menu/editTacos/' + id,data)
+}
+editIngrediant(id:any,data:any){
+  return this.http.put ( this.baseURL + '/menu/editIngrediant/' + id,data)
+}
   
 }

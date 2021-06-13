@@ -90,7 +90,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
     MatTooltipModule,
     MatStepperModule,
     PerfectScrollbarModule,
-    PipesModule
+    PipesModule,
   ],
   exports: [
     RouterModule,
@@ -150,6 +150,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
   ],
   entryComponents:[
     ProductDialogComponent
+    
   ],
   providers:[
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
