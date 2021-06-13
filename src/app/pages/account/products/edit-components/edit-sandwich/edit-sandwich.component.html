@@ -1,1 +1,31 @@
-<p>edit-sandwich works!</p>
+<h1 mat-dialog-title>Update Sandwich</h1>
+
+    <form [formGroup]="sandwichForm">
+      <mat-form-field appearance="fill">
+        <mat-label>nom du sandwich</mat-label>
+        <input matInput formControlName="nom">
+      </mat-form-field><br>
+
+      <mat-form-field appearance="fill">
+        <mat-label>prix</mat-label>
+        <input matInput formControlName="prixPrincipale">
+      </mat-form-field><br>
+
+      <mat-form-field appearance="fill">
+        <mat-label>compositions</mat-label>
+        <textarea matInput formControlName="compositions"></textarea> 
+      </mat-form-field><br>
+
+      <ngx-dropzone  (change)="onSelect($event)">
+        <ngx-dropzone-label>Drop an image here</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label></ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone> <br>
+
+      <div mat-dialog-actions>
+        <button mat-raised-button color="primary" color="primary" (click)="addSandwich()">update sandwich</button>
+        <button mat-raised-button mat-dialog-close color="primary">Close</button>
+      </div>
+      
+    </form>
