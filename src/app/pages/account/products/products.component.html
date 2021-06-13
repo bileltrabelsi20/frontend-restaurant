@@ -1,115 +1,126 @@
-      <!--------------------------- Products coté admin --------------------------------------->     
+<!--------------------------- Products coté admin --------------------------------------->
 
-      <mat-tab-group>
-        <mat-tab label="burger"> <br>
-          <table class="table table-Primary table-hover">
-            <thead>
-              <tr >
-                <th >Product Name</th>
-                <th >Compositions</th>
-                <th >price</th>
-                <th >Image</th>
-                <th >Edit</th>
-                <th >Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let burger of allBurger">
-                <td>{{burger.nom}}</td>
-                <td>{{burger.compositions}}</td>
-                <td>{{burger.prixPrincipale}}</td>
-                <td><img src="{{'http://localhost:3000/' + burger?.imageBurger}}" width="50px" height="50px"></td>
-                <td><button mat-raised-button color="primary" (click)="openBurgerEditDialog(burger)" >
-                  <mat-icon> border_color</mat-icon> Edit</button></td>
-                <td><button (click)='deleteBurger(burger._id)' mat-raised-button color="warn"> 
-                  <mat-icon>delete</mat-icon> delete</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </mat-tab>
-      
-      <!------------------------------------------------------------------------------------------>     
-      
-        <mat-tab label="Sandwich"> <br>
-          <table class="table table-Primary table-hover">
-            <thead>
-              <tr >
-                <th >Product Name</th>
-                <th >Compositions</th>
-                <th >price</th>
-                <th >Image</th>
-                <th >Edit</th>
-                <th >Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let sandwich of allSandwich">
-                <td>{{sandwich.nom}}</td>
-                <td>{{sandwich.compositions}}</td>
-                <td>{{sandwich.prixPrincipale}}</td>
-                <td><img src="{{'http://localhost:3000/' + sandwich?.imageSandwich}}" width="50px" height="50px"></td>
-                <td><button  mat-raised-button color="primary"  (click)="openSandwichEditDialog(sandwich)" >
-                  <mat-icon> border_color</mat-icon> Edit</button></td>
-                <td><button (click)='deleteSandwich(sandwich._id)' mat-raised-button color="warn"> 
-                  <mat-icon>delete</mat-icon> delete</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </mat-tab>
-      
-        <!------------------------------------------------------------------------------------------>
-      
-        <mat-tab label="Tacos"> <br>
-          <table class="table table-Primary table-hover">
-            <thead>
-              <tr >
-                <th >Product Name</th>
-                <th >Compositions</th>
-                <th >price</th>
-                <th >Image</th>
-                <th >Edit</th>
-                <th >Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let tacos of allTacos">
-                <td>{{tacos.nom}}</td>
-                <td>{{tacos.compositions}}</td>
-                <td>{{tacos.prixPrincipale}}</td>
-                <td><img src="{{'http://localhost:3000/' + tacos?.imageTacos}}" width="50px" height="50px"></td>
-                <td><button mat-raised-button color="primary" (click)="openTacosEditDialog(tacos)" >
-                  <mat-icon> border_color</mat-icon> Edit</button></td>
-                <td><button (click)='deleteTacos(tacos._id)' mat-raised-button color="warn"> 
-                  <mat-icon>delete</mat-icon> delete</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </mat-tab>
-      
-      <!------------------------------------------------------------------------------------------>
-      
-        <mat-tab label="All Ingrediants"> <br>
-          <table class="table table-Primary table-hover">
-            <thead>
-              <tr >
-                <th >Product Name</th>
-                <th >price</th>
-                <th >Image</th>
-                <th >Edit</th>
-                <th >Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let Ingrediant of allIngrediants">
-                <td>{{Ingrediant.nomIngrediant}}</td>
-                <td>{{Ingrediant.prixIngrediant}}</td>
-                <td><img src="{{'http://localhost:3000/' + Ingrediant?.imageIngrediant}}" width="50px" height="50px"></td>
-                <td><button  mat-raised-button color="primary" (click)="openIngrediantEditDialog(Ingrediant)" >
-                  <mat-icon> border_color</mat-icon> Edit</button></td>
-                <td><button (click)='deleteIngrediant(Ingrediant._id)' mat-raised-button color="warn"> 
-                  <mat-icon>delete</mat-icon> delete</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </mat-tab>
-      </mat-tab-group>
+<!--------------------------- Afficher les burgers --------------------------------------->
+
+
+<mat-tab-group>
+  <mat-tab label="burger"> <br>
+    <table class="table table-Primary table-hover">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Compositions</th>
+          <th>price</th>
+          <th>Image</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let burger of allBurger">
+          <td>{{burger.nom}}</td>
+          <td>{{burger.compositions}}</td>
+          <td>{{burger.prixPrincipale}}</td>
+          <td><img src="{{'http://localhost:3000/' + burger?.imageBurger}}" width="50px" height="50px"></td>
+          <td><button mat-raised-button color="primary" (click)="openBurgerEditDialog(burger)">
+              <mat-icon> border_color</mat-icon> Edit
+            </button></td>
+          <td><button (click)='deleteBurger(burger._id)' mat-raised-button color="warn">
+              <mat-icon>delete</mat-icon> delete
+            </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+
+<!--------------------------- Afficher les sandwiches --------------------------------------->
+
+  <mat-tab label="Sandwich"> <br>
+    <table class="table table-Primary table-hover">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Compositions</th>
+          <th>price</th>
+          <th>Image</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sandwich of allSandwich">
+          <td>{{sandwich.nom}}</td>
+          <td>{{sandwich.compositions}}</td>
+          <td>{{sandwich.prixPrincipale}}</td>
+          <td><img src="{{'http://localhost:3000/' + sandwich?.imageSandwich}}" width="50px" height="50px"></td>
+          <td><button mat-raised-button color="primary" (click)="openSandwichEditDialog(sandwich)">
+              <mat-icon> border_color</mat-icon> Edit
+            </button></td>
+          <td><button (click)='deleteSandwich(sandwich._id)' mat-raised-button color="warn">
+              <mat-icon>delete</mat-icon> delete
+            </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+
+<!--------------------------- Afficher les tacos --------------------------------------->
+
+  <mat-tab label="Tacos"> <br>
+    <table class="table table-Primary table-hover">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Compositions</th>
+          <th>price</th>
+          <th>Image</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tacos of allTacos">
+          <td>{{tacos.nom}}</td>
+          <td>{{tacos.compositions}}</td>
+          <td>{{tacos.prixPrincipale}}</td>
+          <td><img src="{{'http://localhost:3000/' + tacos?.imageTacos}}" width="50px" height="50px"></td>
+          <td><button mat-raised-button color="primary" (click)="openTacosEditDialog(tacos)">
+              <mat-icon> border_color</mat-icon> Edit
+            </button></td>
+          <td><button (click)='deleteTacos(tacos._id)' mat-raised-button color="warn">
+              <mat-icon>delete</mat-icon> delete
+            </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+
+<!--------------------------- Afficher les ingrediants --------------------------------------->
+
+  <mat-tab label="All Ingrediants"> <br>
+    <table class="table table-Primary table-hover">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>price</th>
+          <th>Image</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let Ingrediant of allIngrediants">
+          <td>{{Ingrediant.nomIngrediant}}</td>
+          <td>{{Ingrediant.prixIngrediant}}</td>
+          <td><img src="{{'http://localhost:3000/' + Ingrediant?.imageIngrediant}}" width="50px" height="50px"></td>
+          <td><button mat-raised-button color="primary" (click)="openIngrediantEditDialog(Ingrediant)">
+              <mat-icon> border_color</mat-icon> Edit
+            </button></td>
+          <td><button (click)='deleteIngrediant(Ingrediant._id)' mat-raised-button color="warn">
+              <mat-icon>delete</mat-icon> delete
+            </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+</mat-tab-group>
