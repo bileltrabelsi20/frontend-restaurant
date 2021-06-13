@@ -1,1 +1,26 @@
-<p>edit-ingrediant works!</p>
+<h1 mat-dialog-title>Update Ingrediant</h1>
+
+    <form [formGroup]="ingrediantsForm">
+      <mat-form-field appearance="fill">
+        <mat-label>nom d'ingrediant</mat-label>
+        <input matInput formControlName="nomIngrediant">
+      </mat-form-field><br>
+      <mat-form-field appearance="fill">
+
+      <mat-label>prix</mat-label>
+        <input matInput formControlName="prixIngrediant">
+      </mat-form-field><br>
+
+
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Drop an image here</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label></ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone> <br>
+
+      <div mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="addIngrediant()">update ingrediant</button>
+        <button mat-raised-button mat-dialog-close color="primary">Close</button>
+      </div>
+    </form>
