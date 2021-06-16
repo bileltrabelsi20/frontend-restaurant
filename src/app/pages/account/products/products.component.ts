@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductsService } from 'src/app/services/products.service';
+
 import { EditBurgerComponent } from './edit-components/edit-burger/edit-burger.component';
 import { EditIngrediantComponent } from './edit-components/edit-ingrediant/edit-ingrediant.component';
 import { EditSandwichComponent } from './edit-components/edit-sandwich/edit-sandwich.component';
 import { EditTacosComponent } from './edit-components/edit-tacos/edit-tacos.component';
+
+import { CofirmDeleteBurgerComponent } from './confirm-delete/cofirm-delete-burger/cofirm-delete-burger.component'
+import { CofirmDeleteSandwichComponent } from './confirm-delete/cofirm-delete-sandwich/cofirm-delete-sandwich.component';
+import { CofirmDeleteTacosComponent } from './confirm-delete/cofirm-delete-tacos/cofirm-delete-tacos.component';
+import { CofirmDeleteIngrediantComponent } from './confirm-delete/cofirm-delete-ingrediant/cofirm-delete-ingrediant.component';
 
 @Component({
   selector: 'app-products',
@@ -63,6 +69,7 @@ export class ProductsComponent implements OnInit {
       this.loadBurger();
     })
   }
+
   deleteTacos(id) {
     this.product.deleteTacos(id).subscribe(data => {
       this.loadTacos();
@@ -98,7 +105,7 @@ export class ProductsComponent implements OnInit {
     const dialogRef = this.dialog.open(EditBurgerComponent, {
       data : product,
       width: '300px',
-      height : '550',
+      height : '580px',
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
@@ -114,7 +121,7 @@ export class ProductsComponent implements OnInit {
   openTacosEditDialog(product) {
     const dialogRef = this.dialog.open(EditTacosComponent, {
       width: '300px',
-      height : '550',
+      height : '550px',
       data : product
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -131,7 +138,7 @@ export class ProductsComponent implements OnInit {
   openIngrediantEditDialog(product) {
     const dialogRef = this.dialog.open(EditIngrediantComponent, {
       width: '300px',
-      height : '550',
+      height : '550px',
       data : product
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -143,4 +150,71 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
+
+////////////////////////// delete products //////////////////////////
+
+openBurgerDeleteDialog(burger) {
+  const dialogRef = this.dialog.open(CofirmDeleteBurgerComponent, {
+    width: '300px',
+    height : '200px',
+    data : { ressource: 'burger'}
+  });
+  dialogRef.afterClosed().subscribe(result => {    
+    if(result){
+      this.product.deleteBurger(burger._id).subscribe(res =>{
+        this.loadBurger();
+        this.snackBar.open('burger deleted successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })
+      });
+    }
+  });
+}
+
+openTacosDeleteDialog(tacos) {
+  const dialogRef = this.dialog.open(CofirmDeleteTacosComponent, {
+    width: '300px',
+    height : '200px',
+    data : { ressource: 'tacos'}
+  });
+  dialogRef.afterClosed().subscribe(result => {    
+    if(result){
+      this.product.deleteTacos(tacos._id).subscribe(res =>{
+        this.loadTacos();
+        this.snackBar.open('tacos deleted successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })
+      });
+    }
+  });
+}
+
+openSandwichDeleteDialog(sandwich) {
+  const dialogRef = this.dialog.open(CofirmDeleteSandwichComponent, {
+    width: '300px',
+    height : '200px',
+    data : { ressource: 'sandwich'}
+  });
+  dialogRef.afterClosed().subscribe(result => {    
+    if(result){
+      this.product.deleteSandwich(sandwich._id).subscribe(res =>{
+        this.loadSandwitch();
+        this.snackBar.open('sandwich deleted successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })
+      });
+    }
+  });
+}
+
+openIngrediantsDeleteDialog(Ingrediant) {
+  const dialogRef = this.dialog.open(CofirmDeleteIngrediantComponent, {
+    width: '300px',
+    height : '200px',
+    data : { ressource: 'ingrediant'}
+  });
+  dialogRef.afterClosed().subscribe(result => {    
+    if(result){
+      this.product.deleteIngrediant(Ingrediant._id).subscribe(res =>{
+        this.loadIngrediants();
+        this.snackBar.open('ingrediant deleted successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 })
+      });
+    }
+  });
+}
+
 }
