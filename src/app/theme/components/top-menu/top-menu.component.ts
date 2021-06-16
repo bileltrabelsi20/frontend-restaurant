@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Data, AppService } from '../../../app.service';
 import { Settings, AppSettings } from '../../../app.settings';
 
@@ -19,23 +20,15 @@ export class TopMenuComponent implements OnInit {
   public flag:any;
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public appService:AppService) { 
+  constructor(public appSettings:AppSettings, public appService:AppService , private router :Router) { 
     this.settings = this.appSettings.settings; 
   } 
-
   ngOnInit() {
     this.currency = this.currencies[0];
     this.flag = this.flags[0];    
   }
-
-  public changeCurrency(currency){
-    this.currency = currency;
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/')
   }
-
-  public changeLang(flag){
-    this.flag = flag;
-  }
-
-  
-
 }

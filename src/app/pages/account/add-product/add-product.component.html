@@ -2,7 +2,7 @@
 
 
   <mat-tab label="Add burger"> <br>
-    <form [formGroup]="burgerForm" #formDirective="ngForm" >
+    <form [formGroup]="burgerForm">
       <mat-form-field appearance="fill">
         <mat-label>nom du Burger</mat-label>
         <input matInput formControlName="nom">
@@ -16,9 +16,14 @@
       <mat-form-field appearance="fill">
         <mat-label>compositions</mat-label>
         <textarea matInput formControlName="compositions"></textarea> 
-      </mat-form-field><br> <br>
+      </mat-form-field><br>
 
-      <input type="file" (change)="onFileSelectBurger($event)"><br><br>
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Drop an image here</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone> <br>
 
       <button mat-raised-button color="primary" (click)="addBurger()">add burger</button>
 
@@ -44,9 +49,14 @@
       <mat-form-field appearance="fill">
         <mat-label>compositions</mat-label>
         <textarea matInput formControlName="compositions"></textarea> 
-      </mat-form-field><br> <br>
+      </mat-form-field><br>
 
-      <input type="file"  (change)="onFileSelectSandwich($event)"><br><br>
+      <ngx-dropzone  (change)="onSelect($event)">
+        <ngx-dropzone-label>Drop an image here</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label></ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone> <br>
 
       <button mat-raised-button color="primary" (click)="addSandwich()">add sandwich</button>
 
@@ -71,9 +81,15 @@
       <mat-form-field appearance="fill">
         <mat-label>compositions</mat-label>
         <textarea matInput formControlName="compositions"></textarea> 
-      </mat-form-field><br> <br>
+      </mat-form-field><br>
 
-      <input type="file" (change)="onFileSelectTacos($event)"><br><br>
+
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Drop an image here</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label></ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone> <br>
 
       <button mat-raised-button color="primary" (click)="addTacos()" >add tacos</button>
 
@@ -94,18 +110,20 @@
         <input matInput formControlName="prixIngrediant">
       </mat-form-field><br>
 
-      <input type="file" (change)="onFileSelectIngrediant($event)"><br><br>
 
-      <button mat-raised-button color="primary" (click)="addIngrediant()" >add ingrediant</button>
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Drop an image here</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label></ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone> <br>
+
+      <button mat-raised-button color="primary" (click)="addIngrediant()">add ingrediant</button>
 
     </form>
+   
   </mat-tab>
 
-  <ngx-dropzone (change)="onSelect($event)">
-    <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
-    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-    </ngx-dropzone-preview>
-  </ngx-dropzone>
+ 
 
 </mat-tab-group>

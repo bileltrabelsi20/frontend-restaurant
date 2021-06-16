@@ -9,9 +9,18 @@ import { InformationComponent } from './information/information.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AddProductComponent } from './add-product/add-product.component';
-import { MatBadgeModule, MatDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatBadgeModule } from '@angular/material/badge';
 import { ProductsComponent } from './products/products.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { EditSandwichComponent } from './products/edit-components/edit-sandwich/edit-sandwich.component';
+import { EditTacosComponent } from './products/edit-components/edit-tacos/edit-tacos.component';
+import { EditBurgerComponent } from './products/edit-components/edit-burger/edit-burger.component';
+import { EditIngrediantComponent } from './products/edit-components/edit-ingrediant/edit-ingrediant.component';
+import { CofirmDeleteTacosComponent } from './products/confirm-delete/cofirm-delete-tacos/cofirm-delete-tacos.component';
+import { CofirmDeleteIngrediantComponent } from './products/confirm-delete/cofirm-delete-ingrediant/cofirm-delete-ingrediant.component';
+import { CofirmDeleteSandwichComponent } from './products/confirm-delete/cofirm-delete-sandwich/cofirm-delete-sandwich.component';
+import { CofirmDeleteBurgerComponent } from './products/confirm-delete/cofirm-delete-burger/cofirm-delete-burger.component';
 
 export const routes = [
   { 
@@ -48,7 +57,38 @@ export const routes = [
     AddressesComponent,
     OrdersComponent,
     AddProductComponent,
-    ProductsComponent
-  ]
+    ProductsComponent,
+    EditSandwichComponent,
+    EditTacosComponent,
+    EditBurgerComponent,
+    EditIngrediantComponent,
+    CofirmDeleteTacosComponent,
+    CofirmDeleteIngrediantComponent,
+    CofirmDeleteSandwichComponent,
+    CofirmDeleteBurgerComponent
+  ],
+  // nzidou dossier exports et entryComponenets fihom les componenets edit
+  exports: [  
+    EditSandwichComponent,
+    EditTacosComponent,
+    EditBurgerComponent,
+    EditIngrediantComponent,
+    
+    CofirmDeleteBurgerComponent,
+    CofirmDeleteTacosComponent,
+    CofirmDeleteIngrediantComponent,
+    CofirmDeleteSandwichComponent,
+  ],
+  entryComponents: [
+    EditSandwichComponent,
+    EditTacosComponent,
+    EditBurgerComponent,
+    EditIngrediantComponent ,
+
+    CofirmDeleteBurgerComponent,
+    CofirmDeleteTacosComponent,
+    CofirmDeleteIngrediantComponent,
+    CofirmDeleteSandwichComponent,
+  ],
 })
 export class AccountModule { }

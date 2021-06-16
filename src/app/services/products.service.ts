@@ -12,39 +12,71 @@ export class ProductsService {
   constructor(  public http : HttpClient) { }
 
   addSandwich(data){
-
     return this.http.post( this.baseURL + '/menu/sandwich',data)
-
-
   }
 
   addBurger(data){
-
     return this.http.post( this.baseURL + '/menu/burger',data)
-
-
   }
 
   addTacos(data){
-
     return this.http.post( this.baseURL + '/menu/tacos',data)
-
-
   }
 
   addIngrediant(data){
-
     return this.http.post( this.baseURL + '/menu/ingrediant',data)
-
-
   }
 
   addImage(data){
-    
     return this.http.post( this.baseURL + '/upload/uploadSingle',data)
-
   }
 
- 
+  //////////////////// get all products ////////////////////////
+
+  getAllSandwich(){
+    return this.http.get( this.baseURL + '/menu/findAllSandwichs')
+  }
+
+  getAllBurger(){
+    return this.http.get( this.baseURL + '/menu/findAllBurgers')
+  }
+
+  getAllTacos(){
+    return this.http.get( this.baseURL + '/menu/findAllTacos')
+  }
+
+  getAllIngrediants(){
+    return this.http.get( this.baseURL + '/menu/findAllIngrediants')
+  }
+
+  ////////////////// delete products ///////////////////////////
+
+  deleteSandwich(id){
+    return this.http.delete ( this.baseURL + '/menu/deleteSandwich/' + id)
+  }
+  deleteBurger(id){
+    return this.http.delete ( this.baseURL + '/menu/deleteBurger/' + id)
+  }
+  deleteTacos(id){
+    return this.http.delete ( this.baseURL + '/menu/deleteTacos/' + id)
+  }
+  deleteIngrediant(id){
+    return this.http.delete ( this.baseURL + '/menu/deleteIngrediant/' + id)
+  }
+
+///////////////////// edit products ///////////////////////////////  
+
+editSandwich(id:any,data:any){
+  return this.http.put ( this.baseURL + '/menu/editSandwich/' + id,data)
+}
+editBurger(id:any,data:any){
+  return this.http.put ( this.baseURL + '/menu/editBurger/' + id,data)
+}
+editTacos(id:any,data:any){
+  return this.http.put ( this.baseURL + '/menu/editTacos/' + id,data)
+}
+editIngrediant(id:any,data:any){
+  return this.http.put ( this.baseURL + '/menu/editIngrediant/' + id,data)
+}
   
 }

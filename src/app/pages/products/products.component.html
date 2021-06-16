@@ -9,7 +9,7 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="categories-wrapper categories-dropdown" perfectScrollbar>
-                    <app-category-list [categories]="categories" [categoryParentId]="0" (change)="onChangeCategory($event)"></app-category-list>
+                    <app-category-list [categories]="categories" [categoryParentId]="0" (click)="onChangeCategory($event)"></app-category-list>
                 </div>
             </mat-expansion-panel>
 
@@ -102,14 +102,14 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <div>
-                <a mat-button [matMenuTriggerFor]="sortMenu" #sortMenuTrigger="matMenuTrigger">
+                <!-- <a mat-button [matMenuTriggerFor]="sortMenu" #sortMenuTrigger="matMenuTrigger">
                     {{sort}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
-                </a>
+                </a> -->
                 <mat-menu #sortMenu="matMenu" xPosition="before" class="app-dropdown" overlapTrigger="true">
                     <span (mouseleave)="sortMenuTrigger.closeMenu()">
-                        <button mat-menu-item *ngFor="let sort of sortings" (click)="changeSorting(sort)">
+                        <!-- <button mat-menu-item *ngFor="let sort of sortings" (click)="changeSorting(sort)">
                             <span>{{sort}}</span>
-                        </button>
+                        </button> -->
                     </span>
                 </mat-menu>
             </div>
@@ -136,23 +136,24 @@
             </div>
         </div>
 
+<!----------------------------------------- Sandwiches ---------------------------------------------------------->
+
         <div *ngIf="viewType == 'grid'" fxLayout="row wrap" class="products-wrapper">
-            <div *ngFor="let product of products | paginate: { itemsPerPage: count, currentPage: page }" fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
+            <div *ngFor="let sandwich of allSandwich | paginate: { itemsPerPage: count, currentPage: page }" fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
                 <mat-card class="product-item text-center">
-                    <mat-chip-list *ngIf="product.discount">
-                        <mat-chip color="warn" selected="true">{{product.discount}}% OFF</mat-chip>
+                    <mat-chip-list *ngIf="sandwich.discount">
+                        <mat-chip color="warn" selected="true">15 % OFF</mat-chip>
                     </mat-chip-list>
-                    <a [routerLink]="['/products', product.id, product.name]" class="image-link">
-                        <img [src]="product.images[0].medium" alt="">
-                    </a>
-                    <h4 class="category text-muted">{{ ( appService.Data.categories | filterById : product.categoryId )?.name }}</h4>                                                                     
-                    <a [routerLink]="['/products', product.id, product.name]" class="title text-truncate">
-                        {{product.name}}
-                    </a>
+                        <img [src]="'http://localhost:3000/' + sandwich?.imageSandwich">
                     <div fxLayout="row" fxLayoutAlign="space-between center" class="prices">
                         <div fxLayout="column" fxLayoutAlign="center start">
-                            <p class="old-price text-muted"><span *ngIf="product.oldPrice">${{product.oldPrice | number : '1.2-2'}}</span></p>
-                            <p class="new-price">${{product.newPrice | number : '1.2-2'}}</p>
+                            <h6>{{sandwich.nom}}</h6> <br><br>
+                        </div>
+                        <div>
+                            <p>{{sandwich.prixPrincipale}} dt</p>
+                        </div>
+                        <div>
+                            <p>{{sandwich.compositions}} dt</p>
                         </div>
                         <app-rating [ratingsCount]="product.ratingsCount" [ratingsValue]="product.ratingsValue" [direction]="'column'"></app-rating>
                     </div>                            
@@ -162,50 +163,91 @@
                     </div>
                 </mat-card>
             </div>
+           
         </div>
 
-        <div *ngIf="viewType == 'list'" fxLayout="row wrap" class="products-wrapper">
-            <div  *ngFor="let product of products | paginate: { itemsPerPage: count, currentPage: page }" fxFlex="100" class="col">
-                <mat-card class="product-item">
-                    <div fxLayout="row wrap">
-                        <div fxFlex="100" fxFlex.gt-xs="40" class="p-2">
-                            <mat-chip-list *ngIf="product.discount" class="list-view">
-                                <mat-chip color="warn" selected="true">{{product.discount}}% OFF</mat-chip>
-                            </mat-chip-list>
-                            <a [routerLink]="['/products', product.id, product.name]" class="image-link">
-                                <img [src]="product.images[0].medium" alt="">
-                            </a>
-                        </div>
-                        <div fxFlex="100" fxFlex.gt-xs="60" class="p-2">
-                            <h4 class="category text-muted">{{ ( appService.Data.categories | filterById : product.categoryId )?.name }}</h4>                                                                     
-                            <a [routerLink]="['/products', product.id, product.name]" class="title">
-                                {{product.name}}
-                            </a>
-                            <p class="py-1 text-muted lh">{{product.description}}</p>
-                            <div fxLayout="row" fxLayoutAlign="space-between center" class="prices">
-                                <div fxLayout="column" fxLayoutAlign="center start">
-                                    <p class="old-price text-muted"><span *ngIf="product.oldPrice">${{product.oldPrice | number : '1.2-2'}}</span></p>
-                                    <p class="new-price">${{product.newPrice | number : '1.2-2'}}</p>
-                                </div>
-                                <app-rating [ratingsCount]="product.ratingsCount" [ratingsValue]="product.ratingsValue" [direction]="'column'"></app-rating>
-                            </div>                            
-                            <div class="divider"></div>
-                            <div class="icons">
-                                <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls>
-                            </div>
-                        </div>
-                    </div>
-                </mat-card>
-            </div>
-        </div>
+<!----------------------------------------- Tacos ---------------------------------------------------------->
 
-        <div *ngIf="products.length > 0" fxLayout="row wrap">
-            <div fxFlex="100"> 
-                <mat-card class="p-0 text-center">           
-                    <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
-                </mat-card>
+<div *ngIf="viewType == 'grid'" fxLayout="row wrap" class="products-wrapper">
+    <div *ngFor="let tacos of allTacos | paginate: { itemsPerPage: count, currentPage: page }" fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
+        <mat-card class="product-item text-center">
+            <mat-chip-list *ngIf="product.discount">
+                <mat-chip color="warn" selected="true">15 % OFF</mat-chip>
+            </mat-chip-list>
+                <img [src]="'http://localhost:3000/' + tacos?.imageTacos">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="prices">
+                <div fxLayout="column" fxLayoutAlign="center start">
+                    <h6>{{tacos.nom}}</h6> <br><br>
+                </div>
+                <div>
+                    <p>{{tacos.prixPrincipale}} dt</p>
+                </div>
+                <div>
+                    <p>{{tacos.compositions}} dt</p>
+                </div>
+                <app-rating [ratingsCount]="product.ratingsCount" [ratingsValue]="product.ratingsValue" [direction]="'column'"></app-rating>
+            </div>                            
+            <div class="divider mt-2"></div>
+            <div class="icons">
+                <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls>
             </div>
-        </div>
+        </mat-card>
+    </div>
+    
+</div>
+
+<!----------------------------------------- Burgers ---------------------------------------------------------->
+
+<div *ngIf="viewType == 'grid'" fxLayout="row wrap" class="products-wrapper">
+    <div *ngFor="let burger of allBurger | paginate: { itemsPerPage: count, currentPage: page }" fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
+        <mat-card class="product-item text-center">
+            <mat-chip-list *ngIf="product.discount">
+                <mat-chip color="warn" selected="true">15 % OFF</mat-chip>
+            </mat-chip-list>
+                <img [src]="'http://localhost:3000/' + burger?.imageBurger">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="prices">
+                <div fxLayout="column" fxLayoutAlign="center start">
+                    <h6>{{burger.nom}}</h6> <br><br>
+                </div>
+                <div>
+                    <p>{{burger.prixPrincipale}} dt</p>
+                </div>
+                <div>
+                    <p>{{burger.compositions}} dt</p>
+                </div>
+                <app-rating [ratingsCount]="product.ratingsCount" [ratingsValue]="product.ratingsValue" [direction]="'column'"></app-rating>
+            </div>                            
+            <div class="divider mt-2"></div>
+            <div class="icons">
+                <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls>
+            </div>
+        </mat-card>
+    </div>
+</div>
+
+<div *ngIf="allBurger.length > 0" fxLayout="row wrap">
+    <div fxFlex="100"> 
+        <mat-card class="p-0 text-center">           
+            <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
+        </mat-card>
+    </div>
+</div>
+
+<!-- <div *ngIf="allTacos.length > 0" fxLayout="row wrap">
+    <div fxFlex="100"> 
+        <mat-card class="p-0 text-center">           
+            <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
+        </mat-card>
+    </div>
+</div>
+
+<div *ngIf="allSandwich.length > 0" fxLayout="row wrap">
+    <div fxFlex="100"> 
+        <mat-card class="p-0 text-center">           
+            <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
+        </mat-card>
+    </div>
+</div> -->
         
     </mat-sidenav-content>
 </mat-sidenav-container>

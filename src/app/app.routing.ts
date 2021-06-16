@@ -3,13 +3,14 @@ import { ModuleWithProviders } from '@angular/core';
 
 import { PagesComponent } from './pages/pages.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     { 
         path: '', 
         component: PagesComponent, children: [
             { path: '', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) },
-            { path: 'account', loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule), data: { breadcrumb: 'Account Settings' } },
+            { path: 'account', canActivate:[AuthGuard] , loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule), data: { breadcrumb: 'Account Settings' } },
             { path: 'compare', loadChildren: () => import('./pages/compare/compare.module').then(m => m.CompareModule), data: { breadcrumb: 'Compare' } },
             { path: 'wishlist', loadChildren: () => import('./pages/wishlist/wishlist.module').then(m => m.WishlistModule), data: { breadcrumb: 'Wishlist' } },
             { path: 'cart', loadChildren: () => import('./pages/cart/cart.module').then(m => m.CartModule), data: { breadcrumb: 'Cart' } },
@@ -23,7 +24,7 @@ export const routes: Routes = [
     { path: '**', component: NotFoundComponent }
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes, {
+export const routing: ModuleWithProviders<any> = RouterModule.forRoot(routes, {
     preloadingStrategy: PreloadAllModules,
     relativeLinkResolution: 'legacy'
 });

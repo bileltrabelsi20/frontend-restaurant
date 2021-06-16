@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ProductDialogComponent } from '../../shared/products-carousel/product-dialog/product-dialog.component';
 import { AppService } from '../../app.service';
 import { Product, Category } from "../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-products',
@@ -17,64 +18,34 @@ export class ProductsComponent implements OnInit {
   private sub: any;
   public viewType: string = 'grid';
   public viewCol: number = 25;
-  public counts = [12, 24, 36];
+  public counts = [3, 24, 36];
   public count:any;
-  public sortings = ['Sort by Default', 'Best match', 'Lowest first', 'Highest first'];
+  // public sortings = ['Sort by Default', 'Best match', 'Lowest first', 'Highest first'];
   public sort:any;
-  public products: Array<Product> = [];
+  // public products = [] as any;
+  public allSandwich = [] as any;
+  public allBurger = [] as any;
+  public allTacos = [] as any;
   public categories:Category[];
   public brands = [];
   public priceFrom: number = 750;
   public priceTo: number = 1599;
-  // public colors = [
-  //   { name: "#5C6BC0", selected: false },
-  //   { name: "#66BB6A", selected: false },
-  //   { name: "#EF5350", selected: false },
-  //   { name: "#BA68C8", selected: false },
-  //   { name: "#FF4081", selected: false },
-  //   { name: "#9575CD", selected: false },
-  //   { name: "#90CAF9", selected: false },
-  //   { name: "#B2DFDB", selected: false },
-  //   { name: "#DCE775", selected: false },
-  //   { name: "#FFD740", selected: false },
-  //   { name: "#00E676", selected: false },
-  //   { name: "#FBC02D", selected: false },
-  //   { name: "#FF7043", selected: false },
-  //   { name: "#F5F5F5", selected: false },
-  //   { name: "#696969", selected: false }
-  // ];
-  // public sizes = [
-  //   { name: "S", selected: false },
-  //   { name: "M", selected: false },
-  //   { name: "L", selected: false },
-  //   { name: "XL", selected: false },
-  //   { name: "2XL", selected: false },
-  //   { name: "32", selected: false },
-  //   { name: "36", selected: false },
-  //   { name: "38", selected: false },
-  //   { name: "46", selected: false },
-  //   { name: "52", selected: false },
-  //   { name: "13.3\"", selected: false },
-  //   { name: "15.4\"", selected: false },
-  //   { name: "17\"", selected: false },
-  //   { name: "21\"", selected: false },
-  //   { name: "23.4\"", selected: false }
-  // ]; 
   public page:any;
   public settings: Settings;
+  snackBar: any;
   constructor(public appSettings:AppSettings, 
               private activatedRoute: ActivatedRoute, 
               public appService:AppService, 
               public dialog: MatDialog, 
-              private router: Router) {
+              private router: Router  ,
+              public product :ProductsService) {
     this.settings = this.appSettings.settings;
   }
 
   ngOnInit() {
     this.count = this.counts[0];
-    this.sort = this.sortings[0];
+    // this.sort = this.sortings[0];
     this.sub = this.activatedRoute.params.subscribe(params => {
-      //console.log(params['name']);
     });
     if(window.innerWidth < 960){
       this.sidenavOpen = false;
@@ -83,19 +54,26 @@ export class ProductsComponent implements OnInit {
       this.viewCol = 33.3;
     };
 
-    this.getCategories();
-    this.getBrands();
-    this.getAllProducts();   
+      
+    this.getAllSandwich() ;
+    this.getAllTacos();
+    this.getAllBurger();
   }
 
-  public getAllProducts(){
-    this.appService.getProducts("featured").subscribe(data=>{
-      this.products = data; 
-      //for show more product  
-      for (var index = 0; index < 3; index++) {
-        this.products = this.products.concat(this.products);        
-      }
-    });
+  getAllSandwich(){
+    this.product.getAllSandwich().subscribe(data => {
+      this.allSandwich = data ;
+    })
+  }
+  getAllBurger(){
+    this.product.getAllBurger().subscribe(data => {
+      this.allBurger = data ;
+    })
+  }
+  getAllTacos(){
+    this.product.getAllTacos().subscribe(data => {
+      this.allTacos = data ;
+    })
   }
 
   public getCategories(){  
@@ -127,8 +105,9 @@ export class ProductsComponent implements OnInit {
 
   public changeCount(count){
     this.count = count;
-    this.getAllProducts(); 
+    // this.getAllProducts(); 
   }
+ 
 
   public changeSorting(sort){
     this.sort = sort;
@@ -154,7 +133,10 @@ export class ProductsComponent implements OnInit {
 
   public onPageChanged(event){
       this.page = event;
-      this.getAllProducts(); 
+      // this.getAllProducts(); 
+      this.getAllSandwich() ;
+    this.getAllTacos();
+    this.getAllTacos();
       window.scrollTo(0,0); 
   }
 
