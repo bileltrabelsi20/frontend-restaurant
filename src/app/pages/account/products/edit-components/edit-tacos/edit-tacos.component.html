@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Update Tacos</h1>
 
-    <form [formGroup]="tacosForm">
+    <form [formGroup]="tacosUpdateForm">
       <mat-form-field appearance="fill">
         <mat-label>nom du tacos</mat-label>
         <input matInput formControlName="nom" value={{data.nom}}>
@@ -13,16 +13,16 @@
 
       <mat-form-field appearance="fill">
         <mat-label>compositions</mat-label>
-        <textarea matInput formControlName="compositions" value={{data.prixPrincipale}}></textarea> 
+        <textarea matInput formControlName="compositions" value={{data.compositions}}></textarea> 
       </mat-form-field><br>
 
 
-      <!-- <ngx-dropzone (change)="onSelect($event)">
+      <ngx-dropzone (change)="onSelect($event)">
         <ngx-dropzone-label>Drop an image here</ngx-dropzone-label>
         <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
           <ngx-dropzone-label></ngx-dropzone-label>
         </ngx-dropzone-preview>
-      </ngx-dropzone> <br> -->
+      </ngx-dropzone> <br>
 
       <div mat-dialog-actions>
         <button mat-raised-button color="primary" color="primary" (click)="updateTacos(tacosUpdateForm.value)" >update tacos</button>

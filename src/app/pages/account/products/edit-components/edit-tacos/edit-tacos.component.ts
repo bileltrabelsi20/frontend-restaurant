@@ -11,12 +11,14 @@ import { ProductsService } from 'src/app/services/products.service';
 export class EditTacosComponent implements OnInit {
 
   files: File[] = [];
-  tacosForm: FormGroup;
-  tacosId : any
+  tacosUpdateForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<EditTacosComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any )
-     {  this.tacosId = data._id }
+             @Inject(MAT_DIALOG_DATA) public data: any ,
+             public tacosupdate :ProductsService){}
+
+
+ /////////////////////// add image /////////////////////////
 
     onSelect(event) {
       this.files.push(...event.addedFiles);    
@@ -24,36 +26,37 @@ export class EditTacosComponent implements OnInit {
     onRemove(event) {
       this.files.splice(this.files.indexOf(event), 1);
     }
-
-    tacosUpdateForm = new FormGroup({
-      nom : new FormControl(this.data.nom),
-      prixPrincipale : new FormControl(this.data.prixPrincipale),
-      compositions : new FormControl(),
-
-    })
+/////////////////////////////////////////////////////////////
 
   ngOnInit(): void {
 
-    this.tacosForm = new FormGroup({
-      nom: new FormControl('', Validators.required),
-      prixPrincipale: new FormControl('', Validators.required),
-      compositions: new FormControl('', Validators.required),
+    this.tacosUpdateForm = new FormGroup({
+      nom : new FormControl(this.data.nom),
+      prixPrincipale : new FormControl(this.data.prixPrincipale),
+      compositions : new FormControl(this.data.compositions),
     })
-
   }
+
+  //////////////// boutton no thank's //////////////////////////
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
+  //////////////////////////////////////////////////////////////
   updateTacos(){
 
     const newFormData = new FormData();
+    // newFormData.set('nom',this.tacosUpdateForm.get('nom').value);
 
-    newFormData.set('nom',this.tacosUpdateForm.get('nom').value);
-    newFormData.set('prixPrincipale',this.tacosUpdateForm.get('prixPrincipale').value);
-    newFormData.set('compositions',this.tacosUpdateForm.get('compositions').value);
+    // form data : boucle for pour les keys : nom , prixPrincipale , compositions
+    Object.keys(this.tacosUpdateForm.value).forEach(key=>{
+      newFormData.set(key,this.tacosUpdateForm.get(key).value);
+    });
 
+    // ajout image after update , this.files[0] : nsobou a partier de l'indice 0 :
+    newFormData.append('imageTacos', this.files[0]);
+    // on ferme le dialog apres l'update :
     this.dialogRef.close(newFormData);
 
     }
