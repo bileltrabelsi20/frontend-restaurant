@@ -121,7 +121,7 @@ export class ProductsComponent implements OnInit {
   openTacosEditDialog(product) {
     const dialogRef = this.dialog.open(EditTacosComponent, {
       width: '300px',
-      height : '550px',
+      height : '580px',
       data : product
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -138,7 +138,7 @@ export class ProductsComponent implements OnInit {
   openIngrediantEditDialog(product) {
     const dialogRef = this.dialog.open(EditIngrediantComponent, {
       width: '300px',
-      height : '550px',
+      height : '580px',
       data : product
     });
     dialogRef.afterClosed().subscribe(result => {
