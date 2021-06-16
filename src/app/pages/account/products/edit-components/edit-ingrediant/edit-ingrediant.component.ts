@@ -47,7 +47,10 @@ export class EditIngrediantComponent implements OnInit {
     });
 
     // ajout image after update , this.files[0] : nsobou a partier de l'indice 0 :
-    newFormData.append('imageIngrediant', this.files[0]);
+    if(this.files[0] !== undefined)
+    {
+      newFormData.append('imageIngrediant', this.files[0]);
+    }
     // on ferme le dialog apres l'update :
     this.dialogRef.close(newFormData);
 

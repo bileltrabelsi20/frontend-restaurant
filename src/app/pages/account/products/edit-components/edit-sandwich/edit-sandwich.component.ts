@@ -51,7 +51,11 @@ export class EditSandwichComponent implements OnInit {
     });
 
     // ajout image after update , this.files[0] : nsobou a partier de l'indice 0 :
-    newFormData.append('imageSandwich', this.files[0]);
+    // keeen image mouch mawjouda izid , ken mawjouda ikhaliha nafsha fel edit
+    if(this.files[0] !== undefined)
+    {
+      newFormData.append('imageSandwich', this.files[0]);
+    }
     // on ferme le dialog apres l'update :
     this.dialogRef.close(newFormData);
 

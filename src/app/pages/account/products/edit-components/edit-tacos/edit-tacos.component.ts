@@ -55,7 +55,10 @@ export class EditTacosComponent implements OnInit {
     });
 
     // ajout image after update , this.files[0] : nsobou a partier de l'indice 0 :
-    newFormData.append('imageTacos', this.files[0]);
+    if(this.files[0] !== undefined)
+    {
+      newFormData.append('imageTacos', this.files[0]);
+    }
     // on ferme le dialog apres l'update :
     this.dialogRef.close(newFormData);
 

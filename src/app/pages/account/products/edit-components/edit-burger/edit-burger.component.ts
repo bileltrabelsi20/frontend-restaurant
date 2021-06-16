@@ -40,15 +40,15 @@ export class EditBurgerComponent implements OnInit {
   updateBurger(){
 
     const newFormData = new FormData();
-    // newFormData.set('nom',this.tacosUpdateForm.get('nom').value);
-
-    // form data : boucle for pour les keys : nom , prixPrincipale , compositions
     Object.keys(this.burgerUpdateForm.value).forEach(key=>{
       newFormData.set(key,this.burgerUpdateForm.get(key).value);
     });
 
     // ajout image after update , this.files[0] : nsobou a partier de l'indice 0 :
-    newFormData.append('imageBurger', this.files[0]);
+    if(this.files[0] !== undefined)
+    {
+      newFormData.append('imageBurger', this.files[0]);
+    }
     // on ferme le dialog apres l'update :
     this.dialogRef.close(newFormData);
 
