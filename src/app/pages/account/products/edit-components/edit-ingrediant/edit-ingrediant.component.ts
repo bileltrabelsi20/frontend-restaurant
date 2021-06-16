@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class EditIngrediantComponent implements OnInit {
   
-  ingrediantsForm: FormGroup;
+  ingrediantUpdateForm: FormGroup;
   files: File[] = [];
 
   constructor(public dialogRef: MatDialogRef<EditIngrediantComponent>,
@@ -25,9 +25,9 @@ export class EditIngrediantComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.ingrediantsForm = new FormGroup({
-      nomIngrediant: new FormControl('', Validators.required),
-      prixIngrediant: new FormControl('', Validators.required),
+    this.ingrediantUpdateForm = new FormGroup({
+      nomIngrediant: new FormControl(this.data.nomIngrediant),
+      prixIngrediant: new FormControl(this.data.prixIngrediant),
     })
 
   }
@@ -35,6 +35,23 @@ export class EditIngrediantComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  updateBurger(){
+
+    const newFormData = new FormData();
+    // newFormData.set('nom',this.tacosUpdateForm.get('nom').value);
+
+    // form data : boucle for pour les keys : nom , prixPrincipale , compositions
+    Object.keys(this.ingrediantUpdateForm.value).forEach(key=>{
+      newFormData.set(key,this.ingrediantUpdateForm.get(key).value);
+    });
+
+    // ajout image after update , this.files[0] : nsobou a partier de l'indice 0 :
+    newFormData.append('imageIngrediant', this.files[0]);
+    // on ferme le dialog apres l'update :
+    this.dialogRef.close(newFormData);
+
+    }
 
 
 }

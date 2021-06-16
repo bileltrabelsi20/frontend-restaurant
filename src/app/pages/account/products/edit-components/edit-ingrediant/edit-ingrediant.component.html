@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Update Ingrediant</h1>
 
-    <form [formGroup]="ingrediantsForm">
+    <form [formGroup]="ingrediantUpdateForm">
       <mat-form-field appearance="fill">
         <mat-label>nom d'ingrediant</mat-label>
         <input matInput formControlName="nomIngrediant">
@@ -20,7 +20,7 @@
       </ngx-dropzone> <br>
 
       <div mat-dialog-actions>
-        <button mat-raised-button color="primary" (click)="addIngrediant()">update ingrediant</button>
+        <button mat-raised-button color="primary" (click)="updateBurger(ingrediantUpdateForm.value)">update ingrediant</button>
         <button mat-raised-button mat-dialog-close color="primary">Close</button>
       </div>
     </form>
