@@ -65,7 +65,7 @@ export const routes = [
     CofirmDeleteTacosComponent,
     CofirmDeleteIngrediantComponent,
     CofirmDeleteSandwichComponent,
-    CofirmDeleteBurgerComponent
+    CofirmDeleteBurgerComponent,
   ],
   // nzidou dossier exports et entryComponenets fihom les componenets edit
   exports: [  
