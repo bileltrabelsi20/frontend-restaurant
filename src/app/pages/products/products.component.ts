@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductDialogComponent } from '../../shared/products-carousel/product-dialog/product-dialog.component';
 import { AppService } from '../../app.service';
-import { Product, Category } from "../../app.models";
+import { Category } from "../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -59,9 +59,38 @@ export class ProductsComponent implements OnInit {
     this.getAllBurger();
   }
 
+  ////////////////////////// filter with checkbox ///////////////////////////
+
+  checkboxArray: any = [
+    {
+      id: 1,
+      type: "checkbox",
+      genre: "Sandwiches",
+      contenu: this.allSandwich
+    },
+    {
+      id: 2,
+      type: "checkbox",
+      genre: "Tacos",
+      contenu: this.allTacos,
+
+    },
+    {
+      id: 3,
+      type: "checkbox",
+      genre: "Burgers",
+      contenu: this.allBurger
+
+    },
+  ]
+
+  ///////////////////////////////////////////////////////////////////////////
+  data: any = []
   getAllSandwich() {
     this.product.getAllSandwich().subscribe(data => {
       this.allSandwich = data;
+      // console.log(this.allSandwich);
+
     })
   }
   getAllBurger() {
@@ -143,4 +172,63 @@ export class ProductsComponent implements OnInit {
     }
   }
 
+  ///////////////////////// filter with chexbox /////////////////////////////
+  tempArray: any = [];
+  newArray: any = [];
+
+  showTacos: boolean = true;
+  showBurgers: boolean = true;
+  showSandwiches: boolean = true;
+
+
+  onChange(event: any) {
+    console.log(event.target.checked);
+    if (event.target.value == 1 && event.target.checked) {
+      this.showSandwiches = true;
+    }
+    else {
+      this.showSandwiches = false;
+      // this.showTacos = true;
+      // this.showBurgers = true;
+
+
+    }
+
+    if (event.target.value == 2 && event.target.checked) {
+      this.showTacos = true;
+    }
+
+    else {
+      this.showTacos = false;
+      // this.showSandwiches = true;
+      // this.showBurgers = true;
+
+    }
+    if (event.target.value == 3 && event.target.checked) {
+      this.showBurgers = true;
+
+    }
+    else {
+      this.showBurgers = false;
+      // this.showSandwiches = true;
+      // this.showTacos = true;
+
+
+    }
+    // (event.target.value == 1 && event.target.checked)&&(event.target.value == 2 && event.target.checked)(event.target.value == 3 && event.target.checked)
+    // if( event.target.checked){
+    //   this.showSandwiches = true;
+    //   this.showBurgers = true;
+    //   this.showTacos = true;
+
+    // }
+    // else{
+    //   this.showBurgers = false;
+    //   this.showTacos = false;
+    //   this.showSandwiches = false;
+
+    // }
+
+
+  }
 }

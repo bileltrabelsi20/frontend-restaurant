@@ -9,14 +9,9 @@
                         <p><b>Categories</b></p>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <!-- <div class="categories-wrapper categories-dropdown" perfectScrollbar>
-                    <app-category-list [categories]="categories" [categoryParentId]="0"
-                        (click)="onChangeCategory($event)"></app-category-list>
-                </div> -->
-                <div fxLayout="column">
-                    <mat-checkbox color="primary">Sandwiches</mat-checkbox>
-                    <mat-checkbox color="primary">Tacos</mat-checkbox>
-                    <mat-checkbox color="primary">Burger</mat-checkbox>
+
+                <div fxLayout="column" *ngFor="let checkboxArrays of checkboxArray">
+                    <input type="{{checkboxArrays.type}}" value={{checkboxArrays.id}} (change)="onChange($event)">{{checkboxArrays.genre}}
                 </div>
             </mat-expansion-panel>
 
@@ -80,7 +75,7 @@
 
         <!----------------------------------------- Sandwiches ---------------------------------------------------------->
 
-        <div *ngIf="viewType == 'grid'" fxLayout="row wrap" class="products-wrapper">
+        <div *ngIf="viewType == 'grid' && showSandwiches" fxLayout="row wrap" class="products-wrapper">
             <div *ngFor="let sandwich of allSandwich | paginate: { itemsPerPage: count, currentPage: page }"
                 fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
                 <mat-card class="product-item text-center">
@@ -99,7 +94,7 @@
 
         <!----------------------------------------- Tacos ---------------------------------------------------------->
 
-        <div *ngIf="viewType == 'grid'" fxLayout="row wrap" class="products-wrapper">
+        <div *ngIf="viewType == 'grid' && showTacos" fxLayout="row wrap" class="products-wrapper">
             <div *ngFor="let tacos of allTacos | paginate: { itemsPerPage: count, currentPage: page }" fxFlex="100"
                 [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
                 <mat-card class="product-item text-center">
@@ -118,7 +113,7 @@
 
         <!----------------------------------------- Burgers ---------------------------------------------------------->
 
-        <div *ngIf="viewType == 'grid'" fxLayout="row wrap" class="products-wrapper">
+        <div *ngIf="viewType == 'grid' && showBurgers" fxLayout="row wrap" class="products-wrapper">
             <div *ngFor="let burger of allBurger | paginate: { itemsPerPage: count, currentPage: page }" fxFlex="100"
                 [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
                 <mat-card class="product-item text-center">

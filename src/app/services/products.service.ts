@@ -11,6 +11,8 @@ export class ProductsService {
 
   constructor(  public http : HttpClient) { }
 
+  ////////////////////////// Add products ///////////////////////////////
+
   addSandwich(data){
     return this.http.post( this.baseURL + '/menu/sandwich',data)
   }
@@ -78,5 +80,9 @@ editTacos(id:any,data:any){
 editIngrediant(id:any,data:any){
   return this.http.put ( this.baseURL + '/menu/editIngrediant/' + id,data)
 }
+
+//////////////////////////////////////////////////////////////////////
+
+
   
 }
