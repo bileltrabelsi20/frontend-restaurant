@@ -32,7 +32,7 @@
                 </div>
             </mat-expansion-panel>
 
-            <mat-expansion-panel expanded>
+            <!-- <mat-expansion-panel expanded>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <h4>Color</h4>
@@ -45,8 +45,8 @@
                         <mat-icon *ngIf="color.selected">check</mat-icon>
                     </button>
                 </div>
-            </mat-expansion-panel>
-
+            </mat-expansion-panel> -->
+<!-- 
             <mat-expansion-panel expanded>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -59,7 +59,7 @@
                         {{size.name}}
                     </button>
                 </div>
-            </mat-expansion-panel>
+            </mat-expansion-panel> -->
 
             <mat-expansion-panel expanded>
                 <mat-expansion-panel-header>
@@ -74,7 +74,7 @@
                 </div>
             </mat-expansion-panel>
 
-            <mat-expansion-panel expanded>
+            <!-- <mat-expansion-panel expanded>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <h4>Brands</h4>
@@ -86,9 +86,9 @@
                         <img [src]="brand.image" />
                     </button>
                 </div>
-            </mat-expansion-panel>
+            </mat-expansion-panel> -->
 
-            <mat-expansion-panel expanded>
+            <!-- <mat-expansion-panel expanded>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <h4>Now starting at $1379</h4>
@@ -98,7 +98,7 @@
                     <a [routerLink]="['/products/electronics']"><img src="assets/images/products/probook/2-medium.png"
                             alt="" class="mw-100"></a>
                 </div>
-            </mat-expansion-panel>
+            </mat-expansion-panel> -->
 
         </mat-accordion>
 
@@ -207,7 +207,7 @@
             </div>
         </div>
 
-        <!-- <div *ngIf="allTacos.length > 0" fxLayout="row wrap">
+        <div *ngIf="allTacos.length > 0" fxLayout="row wrap">
     <div fxFlex="100"> 
         <mat-card class="p-0 text-center">           
             <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
@@ -221,7 +221,7 @@
             <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
         </mat-card>
     </div>
-</div> -->
+</div>
 
     </mat-sidenav-content>
 </mat-sidenav-container>

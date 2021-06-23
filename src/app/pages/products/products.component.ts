@@ -136,7 +136,7 @@ export class ProductsComponent implements OnInit {
       // this.getAllProducts(); 
       this.getAllSandwich() ;
     this.getAllTacos();
-    this.getAllTacos();
+    this.getAllBurger();
       window.scrollTo(0,0); 
   }
 
