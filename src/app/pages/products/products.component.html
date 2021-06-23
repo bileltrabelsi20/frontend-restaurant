@@ -38,44 +38,6 @@
             </mat-expansion-panel>
 
 
-            <!-- <mat-expansion-panel expanded>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <p><b>Menu</b></p>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <div fxLayout="column">
-                    <mat-checkbox color="primary">Sandwiches</mat-checkbox>
-                    <mat-checkbox color="primary">Tacos</mat-checkbox>
-                    <mat-checkbox color="primary">Burger</mat-checkbox>
-                </div>
-            </mat-expansion-panel> -->
-
-            <!-- <mat-expansion-panel expanded>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <h4>Brands</h4>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="filter-brands">
-                    <button mat-raised-button *ngFor="let brand of brands" (click)="brand.selected = !brand.selected"
-                        [class.selected]="brand.selected">
-                        <img [src]="brand.image" />
-                    </button>
-                </div>
-            </mat-expansion-panel> -->
-
-            <!-- <mat-expansion-panel expanded>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <h4>Now starting at $1379</h4>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <div fxLayout="row wrap" fxLayoutAlign="center center">
-                    <a [routerLink]="['/products/electronics']"><img src="assets/images/products/probook/2-medium.png"
-                            alt="" class="mw-100"></a>
-                </div>
-            </mat-expansion-panel> -->
 
         </mat-accordion>
 
@@ -87,14 +49,9 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <div>
-                <!-- <a mat-button [matMenuTriggerFor]="sortMenu" #sortMenuTrigger="matMenuTrigger">
-                    {{sort}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
-                </a> -->
                 <mat-menu #sortMenu="matMenu" xPosition="before" class="app-dropdown" overlapTrigger="true">
                     <span (mouseleave)="sortMenuTrigger.closeMenu()">
-                        <!-- <button mat-menu-item *ngFor="let sort of sortings" (click)="changeSorting(sort)">
-                            <span>{{sort}}</span>
-                        </button> -->
+
                     </span>
                 </mat-menu>
             </div>
@@ -133,7 +90,8 @@
                     <h5 class="new-price">{{sandwich.prixPrincipale}}.000 </h5>
                     <div class="divider mt-2"></div>
                     <div class="icons">
-                        <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls>
+                        <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)">
+                        </app-controls>
                     </div>
                 </mat-card>
             </div>
@@ -151,7 +109,8 @@
                     <h5 class="new-price">{{tacos.prixPrincipale}}.000 </h5>
                     <div class="divider mt-2"></div>
                     <div class="icons">
-                        <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls>
+                        <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)">
+                        </app-controls>
                     </div>
                 </mat-card>
             </div>
@@ -169,7 +128,8 @@
                     <h5 class="new-price">{{burger.prixPrincipale}}.000 </h5>
                     <div class="divider mt-2"></div>
                     <div class="icons">
-                        <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls>
+                        <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)">
+                        </app-controls>
                     </div>
                 </mat-card>
             </div>
@@ -185,20 +145,22 @@
         </div>
 
         <div *ngIf="allTacos.length > 0" fxLayout="row wrap">
-    <div fxFlex="100"> 
-        <mat-card class="p-0 text-center">           
-            <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
-        </mat-card>
-    </div>
-</div>
+            <div fxFlex="100">
+                <mat-card class="p-0 text-center">
+                    <pagination-controls class="product-pagination" autoHide="true" maxSize="5"
+                        (pageChange)="onPageChanged($event)"></pagination-controls>
+                </mat-card>
+            </div>
+        </div>
 
-<div *ngIf="allSandwich.length > 0" fxLayout="row wrap">
-    <div fxFlex="100"> 
-        <mat-card class="p-0 text-center">           
-            <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
-        </mat-card>
-    </div>
-</div>
+        <div *ngIf="allSandwich.length > 0" fxLayout="row wrap">
+            <div fxFlex="100">
+                <mat-card class="p-0 text-center">
+                    <pagination-controls class="product-pagination" autoHide="true" maxSize="5"
+                        (pageChange)="onPageChanged($event)"></pagination-controls>
+                </mat-card>
+            </div>
+        </div>
 
     </mat-sidenav-content>
 </mat-sidenav-container>

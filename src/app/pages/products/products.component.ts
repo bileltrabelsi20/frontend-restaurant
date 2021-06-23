@@ -14,81 +14,80 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductsComponent implements OnInit {
   @ViewChild('sidenav', { static: true }) sidenav: any;
-  public sidenavOpen:boolean = true;
+  public sidenavOpen: boolean = true;
   private sub: any;
   public viewType: string = 'grid';
   public viewCol: number = 25;
   public counts = [3, 24, 36];
-  public count:any;
+  public count: any;
   // public sortings = ['Sort by Default', 'Best match', 'Lowest first', 'Highest first'];
-  public sort:any;
+  public sort: any;
   // public products = [] as any;
   public allSandwich = [] as any;
   public allBurger = [] as any;
   public allTacos = [] as any;
-  public categories:Category[];
+  public categories: Category[];
   public brands = [];
   public priceFrom: number = 1;
   public priceTo: number = 10;
-  public page:any;
+  public page: any;
   public settings: Settings;
   snackBar: any;
-  constructor(public appSettings:AppSettings, 
-              private activatedRoute: ActivatedRoute, 
-              public appService:AppService, 
-              public dialog: MatDialog, 
-              private router: Router  ,
-              public product :ProductsService) {
+  constructor(public appSettings: AppSettings,
+    private activatedRoute: ActivatedRoute,
+    public appService: AppService,
+    public dialog: MatDialog,
+    private router: Router,
+    public product: ProductsService) {
     this.settings = this.appSettings.settings;
   }
 
   ngOnInit() {
     this.count = this.counts[0];
-    // this.sort = this.sortings[0];
     this.sub = this.activatedRoute.params.subscribe(params => {
     });
-    if(window.innerWidth < 960){
+    if (window.innerWidth < 960) {
       this.sidenavOpen = false;
     };
-    if(window.innerWidth < 1280){
+    if (window.innerWidth < 1280) {
       this.viewCol = 33.3;
     };
 
-      
-    this.getAllSandwich() ;
+
+    this.getAllSandwich();
     this.getAllTacos();
     this.getAllBurger();
   }
 
-  getAllSandwich(){
+  getAllSandwich() {
     this.product.getAllSandwich().subscribe(data => {
-      this.allSandwich = data ;
+      this.allSandwich = data;
     })
   }
-  getAllBurger(){
+  getAllBurger() {
     this.product.getAllBurger().subscribe(data => {
-      this.allBurger = data ;
+      this.allBurger = data;
     })
   }
-  getAllTacos(){
+  getAllTacos() {
     this.product.getAllTacos().subscribe(data => {
-      this.allTacos = data ;
+      this.allTacos = data;
     })
   }
 
-  public getCategories(){  
-    if(this.appService.Data.categories.length == 0) { 
+  public getCategories() {
+    if (this.appService.Data.categories.length == 0) {
       this.appService.getCategories().subscribe(data => {
         this.categories = data;
         this.appService.Data.categories = data;
       });
     }
-    else{
+    else {
       this.categories = this.appService.Data.categories;
     }
   }
 
-  public getBrands(){
+  public getBrands() {
     this.brands = this.appService.getBrands();
     this.brands.forEach(brand => { brand.selected = false });
   }
@@ -98,52 +97,50 @@ export class ProductsComponent implements OnInit {
   }
 
   @HostListener('window:resize')
-  public onWindowResize():void {
+  public onWindowResize(): void {
     (window.innerWidth < 960) ? this.sidenavOpen = false : this.sidenavOpen = true;
     (window.innerWidth < 1280) ? this.viewCol = 33.3 : this.viewCol = 25;
   }
 
-  public changeCount(count){
+  public changeCount(count) {
     this.count = count;
-    // this.getAllProducts(); 
   }
- 
 
-  public changeSorting(sort){
+
+  public changeSorting(sort) {
     this.sort = sort;
   }
 
-  public changeViewType(viewType, viewCol){
+  public changeViewType(viewType, viewCol) {
     this.viewType = viewType;
     this.viewCol = viewCol;
   }
 
-  public openProductDialog(product){   
+  public openProductDialog(product) {
     let dialogRef = this.dialog.open(ProductDialogComponent, {
-        data: product,
-        panelClass: 'product-dialog',
-        direction: (this.settings.rtl) ? 'rtl' : 'ltr'
+      data: product,
+      panelClass: 'product-dialog',
+      direction: (this.settings.rtl) ? 'rtl' : 'ltr'
     });
     dialogRef.afterClosed().subscribe(product => {
-      if(product){
-        this.router.navigate(['/products', product.id, product.name]); 
+      if (product) {
+        this.router.navigate(['/products', product.id, product.name]);
       }
     });
   }
 
-  public onPageChanged(event){
-      this.page = event;
-      // this.getAllProducts(); 
-      this.getAllSandwich() ;
+  public onPageChanged(event) {
+    this.page = event;
+    this.getAllSandwich();
     this.getAllTacos();
     this.getAllBurger();
-      window.scrollTo(0,0); 
+    window.scrollTo(0, 0);
   }
 
-  public onChangeCategory(event){
-    if(event.target){
-      this.router.navigate(['/products', event.target.innerText.toLowerCase()]); 
-    }   
+  public onChangeCategory(event) {
+    if (event.target) {
+      this.router.navigate(['/products', event.target.innerText.toLowerCase()]);
+    }
   }
 
 }
