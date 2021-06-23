@@ -1,5 +1,5 @@
 <footer class="bg-primary footer">
-    <div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="center center" class="border-bottom-mute subscribe-block theme-container">
+    <!-- <div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="center center" class="border-bottom-mute subscribe-block theme-container">
         <div fxFlex="100" fxFlex.gt-sm="40" fxLayout="column" fxLayoutAlign="center center"> 
             <h1 class="fw-500">Subscribe our Newsletter</h1>
             <h3 class="fw-300 secondary-color">Stay up to date with our latest new and products</h3>
@@ -8,9 +8,9 @@
             <input type="text" placeholder="Your email address..." fxFlex>
             <button mat-raised-button color="accent" (click)="subscribe()" type="button" class="mat-elevation-z0 text-muted">Subscribe</button>
         </form>
-    </div>
+    </div> -->
     <div fxLayout="row wrap" fxLayoutAlign="space-between" class="py-3 border-bottom-mute theme-container">        
-        <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="40"> 
+        <!-- <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="40"> 
             <h3 class="col-title">USEFUL LINKS</h3>
             <p class="mt-2"><a href="javascript:void(0);" class="link secondary-color">My Account</a></p>
             <p class="mt-1"><a routerLink="/contact" class="link secondary-color">Contact</a></p>
@@ -18,42 +18,35 @@
             <p class="mt-1"><a routerLink="/wishlist" class="link secondary-color">Wishlist</a></p>
             <p class="mt-1"><a routerLink="/checkout" class="link secondary-color">Checkout</a></p>
             <p class="mt-1"><a href="javascript:void(0);" class="link secondary-color">FAQ</a></p>
-        </div>
+        </div> -->
         <div fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="60" ngClass.xs="mt-2" class="contact-information"> 
-            <h3 class="col-title">CONTACT INFORMATION</h3>            
+            <h5 class="col-title">CONTACT INFORMATION</h5>            
             <p fxLayout="row" fxLayoutAlign="start center" class="mt-2 secondary-color">
                 <mat-icon>location_on</mat-icon>
-                <span>2903 Avenue Z, Brooklyn, NY</span>
+                <span>8050 , Hammamet , Tunisia</span>
             </p>
             <p fxLayout="row" fxLayoutAlign="start center" class="mt-1 secondary-color">
                 <mat-icon>call</mat-icon>
-                <span>(212) 457-2308</span>
+                <span>(+216) 72 745 985</span>
             </p>
             <p fxLayout="row" fxLayoutAlign="start center" class="mt-1 secondary-color">
                 <mat-icon>mail_outline</mat-icon>
-                <span>contact@emporium.com</span>
+                <span><a mat-button href="https://accounts.google.com/AccountChooser/signinchooser?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=AccountChooser" target="_blank">point.b.restaurant@gmail.com</a></span>
             </p>
             <p fxLayout="row" fxLayoutAlign="start center" class="mt-1 secondary-color">
                 <mat-icon>schedule</mat-icon>
                 <span>Mon - Sun / 9:00AM - 8:00PM</span>
             </p>
-            <p fxLayout="row" fxLayoutAlign="start center" class="mt-1 secondary-color">
-                <mat-icon>directions</mat-icon>
-                <a href="javascript:void(0);" class="link secondary-color">Get directions</a>
-            </p>
-            <p fxLayout="row" fxLayoutAlign="start center" class="mt-1 secondary-color">
-                <mat-icon>directions_bus</mat-icon>
-                <span>Routes to us</span>
-            </p>
+           
         </div>
         <div fxFlex="100" fxFlex.gt-sm="50" ngClass.sm="mt-2" ngClass.xs="mt-2"> 
-            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="true">
+            <!-- <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="true">
                 <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true"></agm-marker>
-            </agm-map>
+            </agm-map> -->
         </div>
     </div>
     <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="copyright secondary-color theme-container">
         <p ngClass.xs="mt-1">Point B © 2021</p>
-        <p>Designed & Developed by <a mat-button href="http://themeseason.com/" target="_blank">ThemeSeason</a></p>
+        <p>Designed & Developed by Bilel trabelsi</p>
     </div>
 </footer>
