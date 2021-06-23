@@ -6,73 +6,50 @@
             <mat-expansion-panel expanded>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <h4>Categories</h4>
+                        <p><b>Categories</b></p>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <div class="categories-wrapper categories-dropdown" perfectScrollbar>
+                <!-- <div class="categories-wrapper categories-dropdown" perfectScrollbar>
                     <app-category-list [categories]="categories" [categoryParentId]="0"
                         (click)="onChangeCategory($event)"></app-category-list>
+                </div> -->
+                <div fxLayout="column">
+                    <mat-checkbox color="primary">Sandwiches</mat-checkbox>
+                    <mat-checkbox color="primary">Tacos</mat-checkbox>
+                    <mat-checkbox color="primary">Burger</mat-checkbox>
                 </div>
             </mat-expansion-panel>
 
             <mat-expansion-panel expanded>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <h4>Price</h4>
+                        <p><b>Prix</b></p>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="text-muted">
-                    <span>From: <b>${{priceFrom}}</b></span>
-                    <span>To: <b>${{priceTo}}</b></span>
+                    <span>De: <b>{{priceFrom}} dt</b></span>
+                    <span>A: <b>{{priceTo}} dt</b></span>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="filter-price">
-                    <mat-slider color="primary" max="2000" min="1" thumb-label="true" [(ngModel)]="priceFrom">
+                    <mat-slider color="primary" max="50" min="0" thumb-label="true" [(ngModel)]="priceFrom">
                     </mat-slider>
-                    <mat-slider color="warn" max="2000" min="1" thumb-label="true" [(ngModel)]="priceTo"></mat-slider>
+                    <mat-slider color="warn" max="50" min="1" thumb-label="true" [(ngModel)]="priceTo"></mat-slider>
                 </div>
             </mat-expansion-panel>
+
 
             <!-- <mat-expansion-panel expanded>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <h4>Color</h4>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="filter-buttons">
-                    <button mat-raised-button *ngFor="let color of colors" [style.background]="color.name"
-                        (click)="color.selected = !color.selected">
-                        <span *ngIf="!color.selected">&nbsp;</span>
-                        <mat-icon *ngIf="color.selected">check</mat-icon>
-                    </button>
-                </div>
-            </mat-expansion-panel> -->
-<!-- 
-            <mat-expansion-panel expanded>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <h4>Size</h4>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="filter-buttons">
-                    <button mat-raised-button *ngFor="let size of sizes" (click)="size.selected = !size.selected"
-                        [class.selected]="size.selected">
-                        {{size.name}}
-                    </button>
-                </div>
-            </mat-expansion-panel> -->
-
-            <mat-expansion-panel expanded>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <h4>Condition</h4>
+                        <p><b>Menu</b></p>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div fxLayout="column">
-                    <mat-checkbox color="primary">New</mat-checkbox>
-                    <mat-checkbox color="primary">Used</mat-checkbox>
-                    <mat-checkbox color="primary">Not Specified</mat-checkbox>
+                    <mat-checkbox color="primary">Sandwiches</mat-checkbox>
+                    <mat-checkbox color="primary">Tacos</mat-checkbox>
+                    <mat-checkbox color="primary">Burger</mat-checkbox>
                 </div>
-            </mat-expansion-panel>
+            </mat-expansion-panel> -->
 
             <!-- <mat-expansion-panel expanded>
                 <mat-expansion-panel-header>

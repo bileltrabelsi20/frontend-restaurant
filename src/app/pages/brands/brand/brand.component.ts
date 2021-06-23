@@ -24,8 +24,8 @@ export class BrandComponent implements OnInit {
   public products: Array<Product> = [];
   public categories:Category[];
   public brands = [];
-  public priceFrom: number = 750;
-  public priceTo: number = 1599;
+  public priceFrom: number = 1;
+  public priceTo: number = 50;
   public colors = ["#5C6BC0","#66BB6A","#EF5350","#BA68C8","#FF4081","#9575CD","#90CAF9","#B2DFDB","#DCE775","#FFD740","#00E676","#FBC02D","#FF7043","#F5F5F5","#000000"];
   public sizes = ["S","M","L","XL","2XL","32","36","38","46","52","13.3\"","15.4\"","17\"","21\"","23.4\""];
   public page:any;

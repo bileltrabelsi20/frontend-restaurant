@@ -28,8 +28,8 @@ export class ProductsComponent implements OnInit {
   public allTacos = [] as any;
   public categories:Category[];
   public brands = [];
-  public priceFrom: number = 750;
-  public priceTo: number = 1599;
+  public priceFrom: number = 1;
+  public priceTo: number = 10;
   public page:any;
   public settings: Settings;
   snackBar: any;
